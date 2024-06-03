@@ -2,6 +2,9 @@
   "name": "pushup-tracker",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "start": "bun run deploy-commands.ts && bun run index.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
