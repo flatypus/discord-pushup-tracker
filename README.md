@@ -1,15 +1,4 @@
-# pushup-tracker
+# Pushup Tracker (aka the EduBeyond productivity bot) 
 
-To install dependencies:
-
-```bash
-bun install
-```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.1.9. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+## Description
+Have you ever had an intern that doesn't show up to daily scrums on time? Or is your development team just incredibly out of shape? Well, look no further than the Discord Pushup Tracker! When added to your startup's discord server, every minute a developer misses a meeting, you can assign them pushups to do, which are kept track of on a company leaderboard! If you're a developer, you can also track your own pushups and see how you stack up against your coworkers, and hopefully lose some of that developer weight in the process.
