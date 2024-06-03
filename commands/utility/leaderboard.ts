@@ -18,7 +18,7 @@ async function execute(interaction: any) {
     .map(([id, { username, pushups, completed }], index) => {
       return `${
         index + 1
-      }. \*\*${username}\*\* - \`${pushups}\` pushups, \`${completed}\` completed`;
+      }. \*\*${username}\*\* - \`${pushups}\` pushups to do, \`${completed}\` completed`;
     });
 
   const embed = new EmbedBuilder()
