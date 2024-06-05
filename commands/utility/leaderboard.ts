@@ -15,7 +15,7 @@ async function execute(interaction: any) {
 
   const leaderboard = Object.entries(data.users)
     .sort((a, b) => b[1].pushups - a[1].pushups)
-    .map(([id, { username, pushups, completed }], index) => {
+    .map(([_id, { username, pushups, completed }], index) => {
       return `${
         index + 1
       }. \*\*${username}\*\* - \`${pushups}\` pushups to do, \`${completed}\` completed`;

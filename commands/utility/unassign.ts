@@ -1,22 +1,22 @@
 import { SlashCommandBuilder, EmbedBuilder } from "@discordjs/builders";
 
 const data = new SlashCommandBuilder()
-  .setName("assign")
-  .setDescription("Assigns pushups for a user")
+  .setName("unassign")
+  .setDescription("Unassigns pushups for a user")
   .addUserOption((option) =>
     option.setName("user").setDescription("The user to add").setRequired(true),
   )
   .addIntegerOption((option) =>
     option
       .setName("pushups")
-      .setDescription("The number of pushups to assign")
+      .setDescription("The number of pushups to unassign")
       .setMinValue(1)
       .setRequired(true),
   )
   .addStringOption((option) =>
     option
       .setName("reason")
-      .setDescription("The reason for assigning pushups")
+      .setDescription("The reason for unassigning pushups")
       .setRequired(false),
   );
 
@@ -25,25 +25,26 @@ async function execute(interaction: any) {
   const userOption = options.getUser("user");
   const pushups = options.getInteger("integer");
   const reason = options.getString("reason");
-  const { id, username } = userOption;
+  const { id } = userOption;
   const file = Bun.file("./data.json");
   const text = await file.text();
   const data = JSON.parse(text);
 
   let amount;
   if (data.users[id]) {
-    data.users[id].pushups += pushups;
+    data.users[id].pushups = Math.max(data.users[id].pushups - pushups, 0);
     amount = data.users[id].pushups;
   } else {
-    data.users[id] = { username, pushups: pushups, completed: 0 };
-    amount = pushups;
+    await interaction.reply(
+      "User doesn't even have pushups, what are you doing?",
+    );
   }
 
   const embed = new EmbedBuilder()
     .setColor([255, 0, 0])
-    .setTitle("Pushups Assigned")
+    .setTitle("Pushups Unassigned")
     .setDescription(
-      `Assigned \`${pushups}\` pushups to <@${id}>'s total${
+      `Unassigned \`${pushups}\` pushups to <@${id}>'s total${
         reason ? ` for \`${reason}\`` : " "
       }. They now have \`${amount}\` pushups to do!`,
     );
