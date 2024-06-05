@@ -10,14 +10,20 @@ const data = new SlashCommandBuilder()
     option
       .setName("integer")
       .setDescription("The number of pushups to assign")
-      .setMinValue(0)
       .setRequired(true),
+  )
+  .addStringOption((option) =>
+    option
+      .setName("reason")
+      .setDescription("The reason for assigning pushups")
+      .setRequired(false),
   );
 
 async function execute(interaction: any) {
   const { options } = interaction;
   const userOption = options.getUser("user");
   const integer = options.getInteger("integer");
+  const reason = options.getString("reason");
   const { id, username } = userOption;
   const file = Bun.file("./data.json");
   const text = await file.text();
@@ -36,7 +42,9 @@ async function execute(interaction: any) {
     .setColor([255, 0, 0])
     .setTitle("Pushups Assigned")
     .setDescription(
-      `Assigned \`${integer}\` pushups to \`${username}\`'s total. They now have \`${amount}\` pushups to do!`,
+      `Assigned \`${integer}\` pushups to <@${id}>'s total${
+        reason ? `for \`${reason}\`` : " "
+      }. They now have \`${amount}\` pushups to do!`,
     );
 
   Bun.write("./data.json", JSON.stringify(data));
