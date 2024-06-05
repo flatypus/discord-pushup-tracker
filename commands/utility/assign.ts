@@ -23,7 +23,7 @@ const data = new SlashCommandBuilder()
 async function execute(interaction: any) {
   const { options } = interaction;
   const userOption = options.getUser("user");
-  const pushups = options.getInteger("integer");
+  const pushups = options.getInteger("pushups");
   const reason = options.getString("reason");
   const { id, username } = userOption;
   const file = Bun.file("./data.json");
