@@ -23,7 +23,7 @@ const data = new SlashCommandBuilder()
 async function execute(interaction: any) {
   const { options } = interaction;
   const userOption = options.getUser("user");
-  const pushups = options.getInteger("integer");
+  const pushups = options.getInteger("pushups");
   const reason = options.getString("reason");
   const { id } = userOption;
   const file = Bun.file("./data.json");
@@ -44,7 +44,7 @@ async function execute(interaction: any) {
     .setColor([255, 0, 0])
     .setTitle("Pushups Unassigned")
     .setDescription(
-      `Unassigned \`${pushups}\` pushups to <@${id}>'s total${
+      `Unassigned \`${pushups}\` pushups from <@${id}>'s total${
         reason ? ` for \`${reason}\`` : " "
       }. They now have \`${amount}\` pushups to do!`,
     );
