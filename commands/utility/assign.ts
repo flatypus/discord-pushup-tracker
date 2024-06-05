@@ -43,7 +43,7 @@ async function execute(interaction: any) {
     .setTitle("Pushups Assigned")
     .setDescription(
       `Assigned \`${integer}\` pushups to <@${id}>'s total${
-        reason ? `for \`${reason}\`` : " "
+        reason ? ` for \`${reason}\`` : " "
       }. They now have \`${amount}\` pushups to do!`,
     );
 
