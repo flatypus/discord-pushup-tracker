@@ -54,7 +54,7 @@ async function execute(interaction: any) {
     );
 
   Bun.write("./data.json", JSON.stringify(data));
-  await interaction.reply({ embeds: [embed] });
+  await interaction.reply({ content: `<@${id}>`, embeds: [embed] });
 }
 
 export { data, execute };
